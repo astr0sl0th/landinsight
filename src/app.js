@@ -3,12 +3,11 @@ const path = require('path')
 const express = require('express')
 
 const app = express()
-const port = 3000
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 const priceData = new Promise((resolve, reject) => {
-    fs.readFile('sold-price-data.txt', 'utf8', function (err, contents) {
+    fs.readFile(`sold-price-data.txt`, 'utf8', function (err, contents) {
         if (err) {
             reject(err)
         }
@@ -31,7 +30,7 @@ const priceData = new Promise((resolve, reject) => {
             if (devpercentage <= 25) return { color: '#8FE388' }
             if (devpercentage <= 75) return { color: '#645986' };
             if (devpercentage <= 95) return { color: '#801A86' };
-            return 'color: #4E0250;';
+            return { color: '#4E0250' };
         };
 
         const weigtedData = data.map(row => ({
@@ -49,7 +48,7 @@ const priceData = new Promise((resolve, reject) => {
 })
 
 app.get('/', function (req, res) {
-    res.sendFile(path.join(public, 'index.html'));
+    res.sendFile(path.join(__dirname, '../public', 'index.html'));
 });
 
 app.get('/getData', async (req, res) => {
@@ -65,4 +64,4 @@ app.get('/getData', async (req, res) => {
 
 })
 
-app.listen(port, () => console.log(`LandInsight listening on ${port}!`))
+module.exports = app
