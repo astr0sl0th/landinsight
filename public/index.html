@@ -29,10 +29,10 @@
                 <th>Price</th>
             </tr>
         </thead>
-        <tr v-for="todo in todos" v-bind:style="todo.plotColorGroup">
-            <td>{{todo.x}}</td>
-            <td>{{todo.y}}</td>
-            <td>{{todo.p}}</td>
+        <tr v-for="price in prices" v-bind:style="price.plotColorGroup">
+            <td>{{price.x}}</td>
+            <td>{{price.y}}</td>
+            <td>{{price.p}}</td>
         </tr>
     </table>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
